@@ -2,7 +2,8 @@
 
 <h1>Editar película</h1>
 
-@using BusinessLogic
+@using Models;
+@using DataAccess
 @inject MemoryDatabase MemoryDatabase
 @inject NavigationManager NavigationManager
 
@@ -27,6 +28,7 @@
     [Parameter]
     public int Id { get; set; }
     private Movie? currentMovie;
+
     protected override void OnInitialized(){
         currentMovie = MemoryDatabase.FindMovie(Id);
     }

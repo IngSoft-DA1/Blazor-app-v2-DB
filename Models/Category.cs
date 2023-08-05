@@ -1,4 +1,4 @@
-namespace BusinessLogic;
+namespace Models;
 
 public class Category
 {

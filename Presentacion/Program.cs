@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Presentacion.Data;
-using BusinessLogic;
+using Models;
+using DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 

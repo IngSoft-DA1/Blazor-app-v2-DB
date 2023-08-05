@@ -1,5 +1,6 @@
-namespace BusinessLogic;
+namespace DataAccess;
 using System;
+using Models;
 
 public class MemoryDatabase{
     public List<Movie> Movies { get; set; }
