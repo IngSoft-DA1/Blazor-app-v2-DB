@@ -23,15 +23,15 @@ public class MemoryDatabase{
         Category action = Categories.FirstOrDefault(c => c.Name == "Action");
         Category drama = Categories.FirstOrDefault(c => c.Name == "Drama");
         
-        Movies.Add(new Movie { Id = 1, Title = "The Shawshank", Director = "Frank Darabont", ReleaseYear = 1994, Category = drama});
-        Movies.Add(new Movie { Id = 2, Title = "The Godfather", Director = "Francis Coppola", ReleaseYear = 1972, Category = action});
-        Movies.Add(new Movie { Id = 3, Title = "The Godfather", Director = "Francis Ford Coppola", ReleaseYear = 1974, Category = action});
-        Movies.Add(new Movie { Id = 4, Title = "The Dark Knight", Director = "Christopher Nolan", ReleaseYear = 2008, Category = action});
-        Movies.Add(new Movie { Id = 5, Title = "The Lord of the Rings", Director = "Peter Jackson", Category = drama });
-        Movies.Add(new Movie { Id = 6, Title = "Pulp Fiction", Director = "Quentin Tarantino", ReleaseYear = 1994,  Category = drama});
-        Movies.Add(new Movie { Id = 7, Title = "Schindler's List", Director = "Steven Spielberg", ReleaseYear = 1993,  Category = drama});
-        
+        Movies.Add(new Movie { Id = 1, Title = "The Shawshank", Director = "Frank Darabont", ReleaseYear = 1994, Category = drama, Actors = new List<Actor>()});
+        Movies.Add(new Movie { Id = 2, Title = "The Godfather", Director = "Francis Coppola", ReleaseYear = 1972, Category = action, Actors = new List<Actor>()});
+        Movies.Add(new Movie { Id = 3, Title = "The Godfather", Director = "Francis Ford Coppola", ReleaseYear = 1974, Category = action, Actors = new List<Actor>()});
+        Movies.Add(new Movie { Id = 4, Title = "The Dark Knight", Director = "Christopher Nolan", ReleaseYear = 2008, Category = action, Actors = new List<Actor>()});
+        Movies.Add(new Movie { Id = 5, Title = "The Lord of the Rings", Director = "Peter Jackson", Category = drama, Actors = new List<Actor>() });
+        Movies.Add(new Movie { Id = 6, Title = "Pulp Fiction", Director = "Quentin Tarantino", ReleaseYear = 1994,  Category = drama, Actors = new List<Actor>()});
+        Movies.Add(new Movie { Id = 7, Title = "Schindler's List", Director = "Steven Spielberg", ReleaseYear = 1993,  Category = drama, Actors = new List<Actor>()});
     }
+
     
     private void AddDefaultCategories()
     {
