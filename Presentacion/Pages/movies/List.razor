@@ -1,0 +1,46 @@
+@page "/movies"
+<PageTitle>Movies List</PageTitle>
+
+@using BusinessLogic
+@inject MemoryDatabase MemoryDatabase
+
+<h1>
+  Movies List
+  <a href="/movies/create" class="btn btn-success btn-sm" style="float: right;margin-right: 40px;">Create +</a>
+</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Director</th>
+        <th>Release Year</th>
+        <th>Category</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var movie in moviesList){
+        <tr>
+            <td>@movie.Title</td>
+            <td>@movie.Director</td>
+            <td>@movie.ReleaseYear</td>
+            <td>
+                <a class="btn btn-success btn-sm" href="/movies/@movie.Id/edit"> Editar</a>
+                <button class="btn btn-danger btn-sm" @onclick="(() => DeleteMovie(movie.Id))">Eliminar</button>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@code{
+    private List<Movie>? moviesList;
+    protected override void OnInitialized(){
+        moviesList = MemoryDatabase.Movies;
+    }
+    
+    private void DeleteMovie(int id){
+        MemoryDatabase.DeleteMovie(id);
+    }
+
+}

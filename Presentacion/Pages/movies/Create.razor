@@ -1,0 +1,40 @@
+@page "/movies/create/"
+<PageTitle>Create Movie</PageTitle>
+
+@using BusinessLogic
+@inject MemoryDatabase MemoryDatabase
+@inject NavigationManager NavigationManager
+
+<h1>Create Movie</h1>
+<form>
+<div class="form-group">
+    <label for="title">Título</label>
+    <input type="text" class="form-control" id="title" @bind="currentMovie.Title" />
+</div>
+<div class="form-group">
+    <label for="director">Director</label>
+    <input type="text" class="form-control" id="director" @bind="currentMovie.Director" />
+</div>
+<div class="form-group">
+    <label for="releaseYear">Año de lanzamiento</label>
+    <input type="number" class="form-control" id="releaseYear" @bind="currentMovie.ReleaseYear" />
+</div>
+    <button type="button" class="btn btn-primary" @onclick="SaveChanges">Guardar cambios</button>
+    <a href="/movies">Cancelar</a>
+</form>
+
+@code {
+    private Movie? currentMovie;
+
+    protected override void OnInitialized()
+    {
+        currentMovie = new Movie();
+        currentMovie.ReleaseYear= DateTime.Now.Year;
+    }
+
+    private void SaveChanges()
+    {
+        MemoryDatabase.AddMovie(currentMovie);
+        NavigationManager.NavigateTo("/movies");
+    }
+}
