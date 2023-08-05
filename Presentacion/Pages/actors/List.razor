@@ -40,14 +40,17 @@
 @code{
     private List<Actor>? list;
     
+    private ActorsRepository? actorsRepository;
+
     protected override void OnInitialized()
     {
-        list = MemoryDatabase.Actors;
+        actorsRepository = new ActorsRepository(MemoryDatabase);
+        list = actorsRepository.GetAll();
     }
 
     private void DeleteElement(int id)
     {
-        MemoryDatabase.DeleteActor(id);
+        actorsRepository.Delete(id);
     }    
     
 }

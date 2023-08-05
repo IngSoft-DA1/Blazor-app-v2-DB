@@ -25,15 +25,17 @@
     [Parameter]
     public int Id { get; set; }
     private Category? element;
+    private CategoriesRepository? categoriesRepository;
 
     protected override void OnInitialized()
     {
+        categoriesRepository = new CategoriesRepository(MemoryDatabase);
         element = new Category();
     }
 
     private void SaveChanges()
     {
-        MemoryDatabase.AddCategory(element);
+        categoriesRepository.Create(element);
         NavigationManager.NavigateTo("/categories");
     }
 }

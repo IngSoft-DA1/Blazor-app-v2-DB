@@ -35,17 +35,20 @@
 @code {
     [Parameter]
     public int Id { get; set; }
+    
     private Actor? element;
     private string? pathSelectedFile;
+    private ActorsRepository? actorsRepository;
 
     protected override void OnInitialized()
     {
+        actorsRepository = new ActorsRepository(MemoryDatabase);
         element = new Actor();
     }
 
     private void SaveChanges()
     {
-        MemoryDatabase.AddActor(element);
+        actorsRepository.Create(element);
         NavigationManager.NavigateTo("/actors");
     }
 

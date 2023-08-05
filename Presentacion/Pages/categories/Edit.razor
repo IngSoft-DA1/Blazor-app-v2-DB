@@ -24,16 +24,19 @@
 @code {
     [Parameter]
     public int Id { get; set; }
+    
     private Category? element;
+    private CategoriesRepository? categoriesRepository;
 
     protected override void OnInitialized()
     {
-        element = MemoryDatabase.FindCategory(Id);
+        categoriesRepository = new CategoriesRepository(MemoryDatabase);
+        element = categoriesRepository.Find(Id);
     }
 
     private void SaveChanges()
     {
-        MemoryDatabase.UpdateCategory(element);
+        categoriesRepository.Update(element);
         NavigationManager.NavigateTo("/categories");
     }
 }

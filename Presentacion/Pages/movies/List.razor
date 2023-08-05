@@ -26,6 +26,11 @@
             <td>@movie.Director</td>
             <td>@movie.ReleaseYear</td>
             <td>
+                @if(@movie.Category != null){
+                    @movie.Category.Name
+                }
+            </td>
+            <td>
                 <a class="btn btn-success btn-sm" href="/movies/@movie.Id/edit"> Editar</a>
                 <button class="btn btn-danger btn-sm" @onclick="(() => DeleteMovie(movie.Id))">Eliminar</button>
             </td>
@@ -36,12 +41,18 @@
 
 @code{
     private List<Movie>? moviesList;
-    protected override void OnInitialized(){
-        moviesList = MemoryDatabase.Movies;
+    private MoviesRepository moviesRepository;
+
+    protected override void OnInitialized()
+    {
+        moviesRepository = new MoviesRepository(MemoryDatabase);
+        moviesList = moviesRepository.GetAll();
     }
-    
-    private void DeleteMovie(int id){
-        MemoryDatabase.DeleteMovie(id);
+
+    private void DeleteMovie(int id)
+    {
+        moviesRepository.Delete(id);
     }
+
 
 }

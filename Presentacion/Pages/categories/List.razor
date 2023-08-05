@@ -38,14 +38,16 @@
 @code{
     private List<Category>? categoriesList;
     
+    private CategoriesRepository? categoriesRepository;
+
     protected override void OnInitialized()
     {
-        categoriesList = MemoryDatabase.Categories;
+        categoriesRepository = new CategoriesRepository(MemoryDatabase);
+        categoriesList = categoriesRepository.GetAll();
     }
 
     private void DeleteElement(int id)
     {
-        MemoryDatabase.DeleteCategory(id);
-    }
-
+        categoriesRepository.Delete(id);
+    }    
 }

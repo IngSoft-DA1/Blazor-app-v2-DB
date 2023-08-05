@@ -35,14 +35,17 @@
     public int Id { get; set; }
     private Actor? element;
 
+    private ActorsRepository? actorsRepository;
+
     protected override void OnInitialized()
     {
-        element = MemoryDatabase.FindActor(Id);
+        actorsRepository = new ActorsRepository(MemoryDatabase);
+        element = actorsRepository.Find(Id);
     }
 
     private void SaveChanges()
     {
-        MemoryDatabase.UpdateActor(element);
+        actorsRepository.Update(element);
         NavigationManager.NavigateTo("/actors");
     }
 }
