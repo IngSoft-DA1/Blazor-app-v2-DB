@@ -1,0 +1,38 @@
+@page "/categories/{id:int}/edit"
+
+<h1>Create Category</h1>
+
+@using BusinessLogic
+@inject MemoryDatabase MemoryDatabase
+@inject NavigationManager NavigationManager
+
+<form>
+    
+    <div class="form-group">
+        <label for="title">Name</label>
+        <input type="text" class="form-control" id="title" @bind="element.Name" />
+    </div>
+
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" @onclick="SaveChanges">Guardar cambios</button>
+        <a href="/categories">Cancelar</a>
+    </div>
+</form>
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    private Category? element;
+
+    protected override void OnInitialized()
+    {
+        element = MemoryDatabase.FindCategory(Id);
+    }
+
+    private void SaveChanges()
+    {
+        MemoryDatabase.UpdateCategory(element);
+        NavigationManager.NavigateTo("/categories");
+    }
+}

@@ -1,0 +1,51 @@
+@page "/actors/create"
+
+<h1>Create Actor</h1>
+
+@using System.IO
+
+@using BusinessLogic
+@inject MemoryDatabase MemoryDatabase
+@inject NavigationManager NavigationManager
+
+<form>
+    
+    <div class="form-group">
+        <label for="title">Name</label>
+        <input type="text" class="form-control" id="title" @bind="element.Name" />
+    </div>
+    <div class="form-group">
+        <label for="bio">Bio</label>
+        <textarea type="text" class="form-control" id="bio" @bind="element.Bio"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="bio">Birth Date</label>
+        <input type="date" class="form-control" id="bio" @bind="element.BirthDate"/>
+    </div>
+
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" @onclick="SaveChanges">Guardar cambios</button>
+        <a href="/categories">Cancelar</a>
+    </div>
+</form>
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    private Actor? element;
+    private string? pathSelectedFile;
+
+    protected override void OnInitialized()
+    {
+        element = new Actor();
+    }
+
+    private void SaveChanges()
+    {
+        MemoryDatabase.AddActor(element);
+        NavigationManager.NavigateTo("/actors");
+    }
+
+}

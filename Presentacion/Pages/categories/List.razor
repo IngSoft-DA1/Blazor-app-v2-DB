@@ -1,0 +1,50 @@
+@page "/categories"
+
+<PageTitle>Categories List</PageTitle>
+
+@using BusinessLogic
+@inject MemoryDatabase MemoryDatabase
+
+<h1>
+    Categories 
+    <a href="/categories/create" 
+       class="btn btn-success btn-sm" style="float: right;margin-right: 40px;">Create +</a>
+</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var category in categoriesList)
+    {
+        <tr>
+            <td>@category.Id</td>
+            <td>@category.Name</td>
+            <td>
+                <a class="btn btn-primary btn-sm" href="/categories/@category.Id/edit">Edit</a>
+                <button class="btn btn-danger btn-sm" @onclick="(() => DeleteElement(category.Id))">Delete</button>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@code{
+    private List<Category>? categoriesList;
+    
+    protected override void OnInitialized()
+    {
+        categoriesList = MemoryDatabase.Categories;
+    }
+
+    private void DeleteElement(int id)
+    {
+        MemoryDatabase.DeleteCategory(id);
+    }
+
+}

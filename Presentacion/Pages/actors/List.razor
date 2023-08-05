@@ -1,0 +1,52 @@
+@page "/actors"
+
+<PageTitle>Actors List</PageTitle>
+
+@using BusinessLogic
+@inject MemoryDatabase MemoryDatabase
+
+<h1>
+    Actors List 
+    <a href="/actors/create" 
+        class="btn btn-success btn-sm" style="float: right;margin-right: 40px;">Create +</a>
+</h1>
+
+ <table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Birth date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var actor in list)
+        {
+            <tr>
+                <td>@actor.Id</td>
+                <td>@actor.Name</td>
+                <td>@actor.getBirthDate()</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/actors/@actor.Id/edit">Edit</a>
+                    <button class="btn btn-danger btn-sm" @onclick="(() => DeleteElement(actor.Id))">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code{
+    private List<Actor>? list;
+    
+    protected override void OnInitialized()
+    {
+        list = MemoryDatabase.Actors;
+    }
+
+    private void DeleteElement(int id)
+    {
+        MemoryDatabase.DeleteActor(id);
+    }    
+    
+}
