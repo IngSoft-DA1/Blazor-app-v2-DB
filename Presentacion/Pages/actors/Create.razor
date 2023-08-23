@@ -6,7 +6,8 @@
 
 @using Models;
 @using DataAccess
-@inject MemoryDatabase MemoryDatabase
+@using DataAccess.SQL
+@inject SqlContext SqlContext
 @inject NavigationManager NavigationManager
 
 <form>
@@ -38,11 +39,11 @@
     
     private Actor? element;
     private string? pathSelectedFile;
-    private ActorsRepository? actorsRepository;
+    private ActorRepositorySql? actorsRepository;
 
     protected override void OnInitialized()
     {
-        actorsRepository = new ActorsRepository(MemoryDatabase);
+        actorsRepository = new ActorRepositorySql(SqlContext);
         element = new Actor();
     }
 

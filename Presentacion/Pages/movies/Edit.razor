@@ -4,6 +4,8 @@
 
 @using Models;
 @using DataAccess
+@using DataAccess.SQL
+@inject SqlContext SqlContext
 @inject MemoryDatabase MemoryDatabase
 @inject NavigationManager NavigationManager
 
@@ -55,30 +57,30 @@
     public int Id { get; set; }
 
     private Movie? currentMovie;
-    private MoviesRepository moviesRepository;
+    private MoviesRepositorySql moviesRepository;
 
-    private CategoriesRepository categoriesRepository;
+    private CategoryRepositorySql categoriesRepository;
     private List<Category>? categories;
     private int selectedCategoryId;
 
-    private ActorsRepository actorsRepository;
+    private ActorRepositorySql actorsRepository;
     private List<Actor>? actors;
     private List<int> selectedActorIds = new List<int>();
 
 
     protected override void OnInitialized()
     {
-        moviesRepository = new MoviesRepository(MemoryDatabase);
+        moviesRepository = new MoviesRepositorySql(SqlContext);
         currentMovie = moviesRepository.Find(Id);
 
-        categoriesRepository = new CategoriesRepository(MemoryDatabase);
+        categoriesRepository = new CategoryRepositorySql(SqlContext);
         categories = categoriesRepository.GetAll();
 
         if (currentMovie.Category != null){
             selectedCategoryId = currentMovie.Category.Id;
         }
 
-        actorsRepository = new ActorsRepository(MemoryDatabase);
+        actorsRepository = new ActorRepositorySql(SqlContext);
         actors = actorsRepository.GetAll();
     }
 

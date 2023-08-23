@@ -4,6 +4,8 @@
 @using Models;
 @inject MemoryDatabase MemoryDatabase
 @using DataAccess
+@using DataAccess.SQL
+@inject SqlContext SqlContext
 @inject NavigationManager NavigationManager
 
 <h1>Create Movie</h1>
@@ -51,25 +53,25 @@
 
 @code{
     private Movie? currentMovie;
-    private MoviesRepository moviesRepository;
+    private MoviesRepositorySql moviesRepository;
 
-    private CategoriesRepository categoriesRepository;
+    private CategoryRepositorySql categoriesRepository;
     private List<Category>? categories;
     
-    private ActorsRepository actorsRepository;
+    private ActorRepositorySql actorsRepository;
     private List<Actor>? actors;
     private List<int> selectedActorIds = new List<int>();
 
     protected override void OnInitialized()
     {
-        moviesRepository = new MoviesRepository(MemoryDatabase);
+        moviesRepository = new MoviesRepositorySql(SqlContext);
         currentMovie = new Movie();
         currentMovie.ReleaseYear= DateTime.Now.Year;
 
-        categoriesRepository = new CategoriesRepository(MemoryDatabase);
+        categoriesRepository = new CategoryRepositorySql(SqlContext);
         categories = categoriesRepository.GetAll();
         
-        actorsRepository = new ActorsRepository(MemoryDatabase);
+        actorsRepository = new ActorRepositorySql(SqlContext);
         actors = actorsRepository.GetAll();
     }
 

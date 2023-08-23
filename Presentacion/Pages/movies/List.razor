@@ -3,7 +3,9 @@
 
 @using Models;
 @using DataAccess
-@inject MemoryDatabase MemoryDatabase
+@using DataAccess.SQL
+@inject SqlContext SqlContext
+
 
 <h1>
   Movies List
@@ -41,11 +43,12 @@
 
 @code{
     private List<Movie>? moviesList;
-    private MoviesRepository moviesRepository;
+    private MoviesRepositorySql moviesRepository;
+    
 
     protected override void OnInitialized()
     {
-        moviesRepository = new MoviesRepository(MemoryDatabase);
+        moviesRepository = new MoviesRepositorySql(SqlContext);
         moviesList = moviesRepository.GetAll();
     }
 

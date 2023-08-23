@@ -4,6 +4,8 @@
 
 @using Models;
 @using DataAccess
+@using DataAccess.SQL
+@inject SqlContext SqlContext
 @inject MemoryDatabase MemoryDatabase
 
 <h1>
@@ -40,11 +42,11 @@
 @code{
     private List<Actor>? list;
     
-    private ActorsRepository? actorsRepository;
+    private ActorRepositorySql? actorsRepository;
 
     protected override void OnInitialized()
     {
-        actorsRepository = new ActorsRepository(MemoryDatabase);
+        actorsRepository = new ActorRepositorySql(SqlContext);
         list = actorsRepository.GetAll();
     }
 

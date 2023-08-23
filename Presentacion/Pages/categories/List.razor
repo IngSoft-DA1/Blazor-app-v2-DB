@@ -4,6 +4,8 @@
 
 @using Models;
 @using DataAccess
+@using DataAccess.SQL
+@inject SqlContext SqlContext
 @inject MemoryDatabase MemoryDatabase
 
 <h1>
@@ -38,11 +40,11 @@
 @code{
     private List<Category>? categoriesList;
     
-    private CategoriesRepository? categoriesRepository;
+    private CategoryRepositorySql? categoriesRepository;
 
     protected override void OnInitialized()
     {
-        categoriesRepository = new CategoriesRepository(MemoryDatabase);
+        categoriesRepository = new CategoryRepositorySql(SqlContext);
         categoriesList = categoriesRepository.GetAll();
     }
 

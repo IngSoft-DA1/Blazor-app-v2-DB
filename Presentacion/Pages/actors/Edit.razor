@@ -3,8 +3,9 @@
 <h1>Create Actors</h1>
 
 @using Models;
-@inject MemoryDatabase MemoryDatabase
 @using DataAccess
+@using DataAccess.SQL
+@inject SqlContext SqlContext
 @inject NavigationManager NavigationManager
 
 <form>
@@ -35,11 +36,11 @@
     public int Id { get; set; }
     private Actor? element;
 
-    private ActorsRepository? actorsRepository;
+    private ActorRepositorySql? actorsRepository;
 
     protected override void OnInitialized()
     {
-        actorsRepository = new ActorsRepository(MemoryDatabase);
+        actorsRepository = new ActorRepositorySql(SqlContext);
         element = actorsRepository.Find(Id);
     }
 

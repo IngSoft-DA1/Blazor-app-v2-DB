@@ -2,11 +2,11 @@ namespace DataAccess.SQL;
 using Models;
 
 
-public class MoviesRepository
+public class MoviesRepositorySql
 {
     private SqlContext _database;
 
-    public MoviesRepository(SqlContext database)
+    public MoviesRepositorySql(SqlContext database)
     {
         _database = database;
     }

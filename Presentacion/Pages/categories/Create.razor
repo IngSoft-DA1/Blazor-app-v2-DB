@@ -5,6 +5,8 @@
 @using Models;
 @inject MemoryDatabase MemoryDatabase
 @using DataAccess
+@using DataAccess.SQL
+@inject SqlContext SqlContext
 @inject NavigationManager NavigationManager
 
 <form>
@@ -25,11 +27,11 @@
     [Parameter]
     public int Id { get; set; }
     private Category? element;
-    private CategoriesRepository? categoriesRepository;
+    private CategoryRepositorySql? categoriesRepository;
 
     protected override void OnInitialized()
     {
-        categoriesRepository = new CategoriesRepository(MemoryDatabase);
+        categoriesRepository = new CategoryRepositorySql(SqlContext);
         element = new Category();
     }
 
