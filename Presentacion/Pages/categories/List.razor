@@ -51,5 +51,6 @@
     private void DeleteElement(int id)
     {
         categoriesRepository.Delete(id);
+        categoriesList = categoriesRepository.GetAll();
     }    
 }

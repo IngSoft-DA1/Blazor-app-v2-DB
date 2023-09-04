@@ -17,8 +17,8 @@ public class CategoryRepositorySql
 
     public void Create(Category category)
     {
-        category.Id = _database.Categories.Count() + 1;
         _database.Categories.Add(category);
+        _database.SaveChanges();
     }
     public Category Find(int id)
     {
@@ -33,7 +33,8 @@ public class CategoryRepositorySql
     }
     public void Delete(int id)
     {
-        Category entry = this.Find(id);
+        Category entry = Find(id);
         _database.Categories.Remove(entry);
+        _database.SaveChanges();
     }
 }

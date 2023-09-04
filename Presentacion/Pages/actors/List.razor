@@ -53,6 +53,7 @@
     private void DeleteElement(int id)
     {
         actorsRepository.Delete(id);
+        list = actorsRepository.GetAll();
     }    
     
 }

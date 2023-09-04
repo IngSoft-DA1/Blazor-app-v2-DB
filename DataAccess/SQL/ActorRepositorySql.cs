@@ -16,8 +16,8 @@ public class ActorRepositorySql
 
     public void Create(Actor actor)
     {
-        actor.Id = _database.Actors.Count() + 1;
         _database.Actors.Add(actor);
+        _database.SaveChanges();
     }
     public Actor Find(int id)
     {
@@ -34,5 +34,6 @@ public class ActorRepositorySql
     {
         Actor entry = this.Find(id);
         _database.Actors.Remove(entry);
+        _database.SaveChanges();
     }
 }

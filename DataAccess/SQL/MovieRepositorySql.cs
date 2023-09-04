@@ -18,8 +18,8 @@ public class MoviesRepositorySql
 
     public void Create(Movie movie)
     {
-        movie.Id = _database.Movies.Count() + 1;
         _database.Movies.Add(movie);
+        _database.SaveChanges();
     }
     public Movie Find(int id)
     {
@@ -36,5 +36,6 @@ public class MoviesRepositorySql
     {
         Movie entry = this.Find(id);
         _database.Movies.Remove(entry);
+        _database.SaveChanges();
     }
 }

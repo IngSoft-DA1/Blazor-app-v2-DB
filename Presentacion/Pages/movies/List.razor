@@ -55,6 +55,7 @@
     private void DeleteMovie(int id)
     {
         moviesRepository.Delete(id);
+        moviesList = moviesRepository.GetAll();
     }
 
 
