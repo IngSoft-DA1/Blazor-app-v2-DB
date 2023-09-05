@@ -5,7 +5,8 @@
 @using Models;
 @using DataAccess
 @using DataAccess.SQL
-@inject SqlContext SqlContext
+@using AppContext = DataAccess.AppContext
+@inject AppContext AppContext
 @inject MemoryDatabase MemoryDatabase
 
 <h1>
@@ -44,7 +45,7 @@
 
     protected override void OnInitialized()
     {
-        categoriesRepository = new CategoryRepositorySql(SqlContext);
+        categoriesRepository = new CategoryRepositorySql(AppContext);
         categoriesList = categoriesRepository.GetAll();
     }
 

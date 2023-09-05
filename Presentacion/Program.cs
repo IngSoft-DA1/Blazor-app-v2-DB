@@ -5,6 +5,7 @@ using Models;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using AppContext = DataAccess.AppContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,7 @@ builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.AddSingleton<MemoryDatabase>();
 
-builder.Services.AddDbContextFactory<SqlContext>(
+builder.Services.AddDbContextFactory<AppContext>(
     options => options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection"),
         providerOptions => providerOptions.EnableRetryOnFailure())

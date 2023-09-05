@@ -7,7 +7,8 @@
 @using Models;
 @using DataAccess
 @using DataAccess.SQL
-@inject SqlContext SqlContext
+@using AppContext = DataAccess.AppContext
+@inject AppContext AppContext
 @inject NavigationManager NavigationManager
 
 <form>
@@ -43,7 +44,7 @@
 
     protected override void OnInitialized()
     {
-        actorsRepository = new ActorRepositorySql(SqlContext);
+        actorsRepository = new ActorRepositorySql(AppContext);
         element = new Actor();
     }
 

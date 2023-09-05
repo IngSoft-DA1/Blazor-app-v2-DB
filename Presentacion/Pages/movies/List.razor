@@ -4,7 +4,8 @@
 @using Models;
 @using DataAccess
 @using DataAccess.SQL
-@inject SqlContext SqlContext
+@using AppContext = DataAccess.AppContext
+@inject AppContext AppContext
 
 
 <h1>
@@ -48,7 +49,7 @@
 
     protected override void OnInitialized()
     {
-        moviesRepository = new MoviesRepositorySql(SqlContext);
+        moviesRepository = new MoviesRepositorySql(AppContext);
         moviesList = moviesRepository.GetAll();
     }
 

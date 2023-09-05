@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
-    [DbContext(typeof(SqlContext))]
+    [DbContext(typeof(AppContext))]
     [Migration("20230807040559_NombreDeLaMigracion")]
     partial class NombreDeLaMigracion
     {

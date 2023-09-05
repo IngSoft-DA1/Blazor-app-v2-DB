@@ -3,9 +3,9 @@ using Models;
 
 public class CategoryRepositorySql
 {
-    private SqlContext _database;
+    private AppContext _database;
 
-    public CategoryRepositorySql(SqlContext database)
+    public CategoryRepositorySql(AppContext database)
     {
         _database = database;
     }

@@ -4,9 +4,9 @@ using Models;
 
 public class MoviesRepositorySql
 {
-    private SqlContext _database;
+    private AppContext _database;
 
-    public MoviesRepositorySql(SqlContext database)
+    public MoviesRepositorySql(AppContext database)
     {
         _database = database;
     }

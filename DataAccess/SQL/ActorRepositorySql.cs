@@ -3,8 +3,8 @@ using Models;
 
 public class ActorRepositorySql
 {
-    private SqlContext _database;
-    public ActorRepositorySql(SqlContext database)
+    private AppContext _database;
+    public ActorRepositorySql(AppContext database)
     {
         _database = database;
     }

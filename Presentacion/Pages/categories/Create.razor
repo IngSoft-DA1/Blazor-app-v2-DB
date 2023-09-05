@@ -6,7 +6,8 @@
 @inject MemoryDatabase MemoryDatabase
 @using DataAccess
 @using DataAccess.SQL
-@inject SqlContext SqlContext
+@using AppContext = DataAccess.AppContext
+@inject AppContext AppContext
 @inject NavigationManager NavigationManager
 
 <form>
@@ -31,7 +32,7 @@
 
     protected override void OnInitialized()
     {
-        categoriesRepository = new CategoryRepositorySql(SqlContext);
+        categoriesRepository = new CategoryRepositorySql(AppContext);
         element = new Category();
     }
 

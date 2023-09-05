@@ -5,7 +5,8 @@
 @inject MemoryDatabase MemoryDatabase
 @using DataAccess
 @using DataAccess.SQL
-@inject SqlContext SqlContext
+@using AppContext = DataAccess.AppContext
+@inject AppContext AppContext
 @inject NavigationManager NavigationManager
 
 <h1>Create Movie</h1>
@@ -64,14 +65,14 @@
 
     protected override void OnInitialized()
     {
-        moviesRepository = new MoviesRepositorySql(SqlContext);
+        moviesRepository = new MoviesRepositorySql(AppContext);
         currentMovie = new Movie();
         currentMovie.ReleaseYear= DateTime.Now.Year;
 
-        categoriesRepository = new CategoryRepositorySql(SqlContext);
+        categoriesRepository = new CategoryRepositorySql(AppContext);
         categories = categoriesRepository.GetAll();
         
-        actorsRepository = new ActorRepositorySql(SqlContext);
+        actorsRepository = new ActorRepositorySql(AppContext);
         actors = actorsRepository.GetAll();
     }
 

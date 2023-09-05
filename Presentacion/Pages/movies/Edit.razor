@@ -5,7 +5,8 @@
 @using Models;
 @using DataAccess
 @using DataAccess.SQL
-@inject SqlContext SqlContext
+@using AppContext = DataAccess.AppContext
+@inject AppContext AppContext
 @inject MemoryDatabase MemoryDatabase
 @inject NavigationManager NavigationManager
 
@@ -70,17 +71,17 @@
 
     protected override void OnInitialized()
     {
-        moviesRepository = new MoviesRepositorySql(SqlContext);
+        moviesRepository = new MoviesRepositorySql(AppContext);
         currentMovie = moviesRepository.Find(Id);
 
-        categoriesRepository = new CategoryRepositorySql(SqlContext);
+        categoriesRepository = new CategoryRepositorySql(AppContext);
         categories = categoriesRepository.GetAll();
 
         if (currentMovie.Category != null){
             selectedCategoryId = currentMovie.Category.Id;
         }
 
-        actorsRepository = new ActorRepositorySql(SqlContext);
+        actorsRepository = new ActorRepositorySql(AppContext);
         actors = actorsRepository.GetAll();
     }
 
